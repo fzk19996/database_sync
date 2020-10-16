@@ -24,7 +24,7 @@
 #include "dialog.h"
 #include "netWindow.h"
 
-#define DEBUG 1
+//#define DEBUG 1
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

@@ -752,6 +752,8 @@ void MainWindow::syn_fun()
 void MainWindow::add_sync_database(QString sql){
     qDebug() << "添加数据库sql" << sql;
     //执行sql
+    QSqlQuery query;
+    query.exec(sql);
 }
 
 //数据同步按钮
