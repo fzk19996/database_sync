@@ -1,0 +1,51 @@
+CREATE TRIGGER triggername before insert or update or delete on test FOR EACH ROW
+    BEGIN
+       if deleting then
+     INSERT INTO log(text) values('delete'+name )
+   elsif updating then
+     raise_application_error(-20002,'该表不允许修改数据');
+    elsif inserting then
+     raise_application_error(-20003,'该表不允许插入数据');
+    end if;
+end;
+
+
+CREATE TRIGGER triggername before insert or update or delete on test FOR EACH ROW
+    BEGIN
+       if deleting then
+     INSERT INTO log (id,text) values (21,ORA_DICT_OBJ_NAME);
+   elsif updating then
+    INSERT INTO log (id,text) values (21,ORA_DICT_OBJ_NAME);
+    elsif inserting then
+     INSERT INTO log (classid,classname) values (2,NEW.id);
+    end if;
+end;
+
+
+
+create or replace trigger triggertest
+after insert or update or delete
+
+  on TEST 
+  for each row
+  
+declare
+ 
+  oper CHAR(100);
+  n NUMBER;
+ 
+begin
+   if inserting then 
+       oper:='添加一条新数据: ' || :new.;
+       n:=5;
+       
+    elsif deleting then 
+       oper:='delete';
+        n:=5;
+    else 
+       oper:='update';
+        n:=5;
+    end if;
+   
+   insert into tab_log  values(n,oper);
+end triggertest;
